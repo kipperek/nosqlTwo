@@ -28,7 +28,7 @@ Ile osób z bazy żyje w danym kraju malejąco:
 ```javascript
 > db.people.group({ key: { country: true}, initial: {count: 0}, reduce: function(doc, out) {out.count++;} }).sort(function(a,b){ return b.count - a.count; });
 ```
-Wynik:
+Wynik w postaci tabelki: [agregacja1.md](wyniki/agregacja1.md)
 
 
 ## Agregacja 2
