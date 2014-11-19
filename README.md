@@ -25,6 +25,7 @@ Ilość danych:
 ## Agregacja 1
 
 Ile osób z bazy żyje w danym kraju malejąco:
+
 Javascript:
 ```javascript
 > db.people.group({ 
@@ -45,7 +46,16 @@ PHP
 	
 	$g = $collection->group($keys, $initial, $reduce);
 
-	echo json_encode($g['retval']);
+	$ret = $g['retval'];
+
+	$count = array();
+	foreach ($ret as $key => $row)
+	{
+	    $count[$key] = $row['count'];
+	}
+	array_multisort($count, SORT_DESC, $ret);
+
+	echo json_encode($ret);
 ?>
 ```
 
@@ -54,6 +64,7 @@ Wynik w postaci tabelki: [agregacja1.md](wyniki/agregacja1.md)
 ## Agregacja 2
 
 Średnia posiadanych samochodów przez kobiety i mężczyzn:
+
 Javascript
 ```javascript
 db.people.group({ 
@@ -88,7 +99,8 @@ Json: [agregacja2.json](wyniki/agregacja2.json)
 
 ## Agregacja 3
 
-Suma kobiet i mężczyzn dla każdej ilości samochodów posiadanych
+Suma kobiet i mężczyzn dla każdej ilości samochodów posiadanych:
+
 Javascript
 ```javascript
 db.people.group({ 
@@ -105,11 +117,20 @@ PHP
 	
 	$keys = array("carsOwned" => 1);
 	$initial = array("male" => 0, "female" => 0);
-	$reduce = "function(doc, out) { if(doc.sex === "Male") out.male++; else out.female++; }";
+	$reduce = "function(doc, out) { if(doc.sex === 'Male') out.male++; else out.female++; }";
 	
 	$g = $collection->group($keys, $initial, $reduce);
 
-	echo json_encode($g['retval']);
+	$ret = $g['retval'];
+
+	$carsOwned = array();
+	foreach ($ret as $key => $row)
+	{
+	    $carsOwned[$key] = $row['carsOwned'];
+	}
+	array_multisort($carsOwned, SORT_DESC, $ret);
+
+	echo json_encode($ret);
 ?>
 ```
 
@@ -120,7 +141,8 @@ Json: [agregacja3.json](wyniki/agregacja3.json)
 
 ## Agregacja 4
 
-5 krajów w ktorych najlepiej zarabiają kobiety
+5 krajów w ktorych najlepiej zarabiają kobiety:
+
 Javascript
 ```javascript
 db.people.group({ 
@@ -146,7 +168,17 @@ PHP
 
 	$g = $collection->group($keys, $initial, $reduce, $options);
 
-	echo json_encode($g['retval']);
+	$ret = $g['retval'];
+
+	$avg_salary = array();
+	foreach ($ret as $key => $row)
+	{
+	    $avg_salary[$key] = $row['avg_salary'];
+	}
+	array_multisort($avg_salary, SORT_DESC, $ret);
+
+
+	echo json_encode(array_slice($ret, 0, 5));
 ?>
 ```
 
