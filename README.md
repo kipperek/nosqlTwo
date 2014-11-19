@@ -62,8 +62,24 @@ db.people.group({
 }).sort(function(a,b){ return b.carsOwned - a.carsOwned; });
 ```
 Wynik:
-![agregacja2](wyniki/agregacja3.png)
+![agregacja3](wyniki/agregacja3.png)
 
-Json: [agregacja2.json](wyniki/agregacja3.json)
+Json: [agregacja3.json](wyniki/agregacja3.json)
 
 ## Agregacja 4
+
+5 krajów w ktorych najlepiej zarabiają kobiety
+```javascript
+db.people.group({ 
+	cond: { sex : "Female" },
+	key: { country: true}, 
+	initial: { count: 0, total_salary: 0 }, 
+	reduce: function(doc, out) { out.count++; out.total_salary+= doc.salary; },  
+	finalize: function(out) { out.avg_salary = out.total_salary / out.count; }
+}).sort(function(a,b){ return b.avg_salary - a.avg_salary; }).slice(0, 5);
+```
+
+Wynik:
+![agregacja4](wyniki/agregacja4.png)
+
+Json: [agregacja4.json](wyniki/agregacja4.json)

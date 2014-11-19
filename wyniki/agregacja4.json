@@ -1,0 +1,32 @@
+[
+	{
+		"country" : "British Virgin Islands",
+		"count" : 7,
+		"total_salary" : 4668290,
+		"avg_salary" : 666898.5714285715
+	},
+	{
+		"country" : "Cocos Islands",
+		"count" : 14,
+		"total_salary" : 9240752,
+		"avg_salary" : 660053.7142857143
+	},
+	{
+		"country" : "Macao",
+		"count" : 14,
+		"total_salary" : 8934711,
+		"avg_salary" : 638193.6428571428
+	},
+	{
+		"country" : "Niue",
+		"count" : 6,
+		"total_salary" : 3808725,
+		"avg_salary" : 634787.5
+	},
+	{
+		"country" : "Pitcairn",
+		"count" : 12,
+		"total_salary" : 7321392,
+		"avg_salary" : 610116
+	}
+]
