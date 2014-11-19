@@ -30,8 +30,17 @@ Ile osób z bazy żyje w danym kraju malejąco:
 ```
 Wynik w postaci tabelki: [agregacja1.md](wyniki/agregacja1.md)
 
-
 ## Agregacja 2
+
+Średnia posiadanych samochodów przez kobiety i mężczyzn:
+```javascript
+db.people.group({ key: { sex: true}, initial: {count: 0, total_cars: 0}, reduce: function(doc, out) {out.count++; out.total_cars+=doc.carsOwned;},  finalize: function(out) { out.avg_carsOwned = out.total_cars / out.count; } });
+```
+
+Wynik: 
+![agregacja2](wyniki/agregacja2.png)
+
+Json: [agregacja2.json](wyniki/agregacja2.json)
 
 ## Agregacja 3
 
