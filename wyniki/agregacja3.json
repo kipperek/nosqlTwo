@@ -1,0 +1,57 @@
+[
+	{
+		"carsOwned" : 10,
+		"male" : 46103,
+		"female" : 45948
+	},
+	{
+		"carsOwned" : 9,
+		"male" : 45908,
+		"female" : 46047
+	},
+	{
+		"carsOwned" : 8,
+		"male" : 45958,
+		"female" : 45763
+	},
+	{
+		"carsOwned" : 7,
+		"male" : 45734,
+		"female" : 45852
+	},
+	{
+		"carsOwned" : 6,
+		"male" : 46123,
+		"female" : 45849
+	},
+	{
+		"carsOwned" : 5,
+		"male" : 45400,
+		"female" : 45885
+	},
+	{
+		"carsOwned" : 4,
+		"male" : 45572,
+		"female" : 45465
+	},
+	{
+		"carsOwned" : 3,
+		"male" : 45683,
+		"female" : 45855
+	},
+	{
+		"carsOwned" : 2,
+		"male" : 45744,
+		"female" : 45661
+	},
+	{
+		"carsOwned" : 1,
+		"male" : 45554,
+		"female" : 45577
+	},
+	{
+		"carsOwned" : 0,
+		"male" : 45794,
+		"female" : 45527
+	}
+]

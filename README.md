@@ -26,7 +26,11 @@ Ilość danych:
 
 Ile osób z bazy żyje w danym kraju malejąco:
 ```javascript
-> db.people.group({ key: { country: true}, initial: {count: 0}, reduce: function(doc, out) {out.count++;} }).sort(function(a,b){ return b.count - a.count; });
+> db.people.group({ 
+	key: { country: true},
+	initial: {count: 0}, 
+	reduce: function(doc, out) {out.count++;} 
+}).sort(function(a,b){ return b.count - a.count; });
 ```
 Wynik w postaci tabelki: [agregacja1.md](wyniki/agregacja1.md)
 
@@ -34,7 +38,12 @@ Wynik w postaci tabelki: [agregacja1.md](wyniki/agregacja1.md)
 
 Średnia posiadanych samochodów przez kobiety i mężczyzn:
 ```javascript
-db.people.group({ key: { sex: true}, initial: {count: 0, total_cars: 0}, reduce: function(doc, out) {out.count++; out.total_cars+=doc.carsOwned;},  finalize: function(out) { out.avg_carsOwned = out.total_cars / out.count; } });
+db.people.group({ 
+	key: { sex: true}, 
+	initial: {count: 0, total_cars: 0}, 
+	reduce: function(doc, out) {out.count++; out.total_cars+=doc.carsOwned;},  
+	finalize: function(out) { out.avg_carsOwned = out.total_cars / out.count; }
+});
 ```
 
 Wynik: 
@@ -43,5 +52,18 @@ Wynik:
 Json: [agregacja2.json](wyniki/agregacja2.json)
 
 ## Agregacja 3
+
+Suma kobiet i mężczyzn dla każdej ilości samochodów posiadanych
+```javascript
+db.people.group({ 
+	key: { carsOwned: true}, 
+	initial: { male: 0, female: 0 }, 
+	reduce: function(doc, out) { if(doc.sex === "Male") out.male++; else out.female++; },  
+}).sort(function(a,b){ return b.carsOwned - a.carsOwned; });
+```
+Wynik:
+![agregacja2](wyniki/agregacja3.png)
+
+Json: [agregacja2.json](wyniki/agregacja3.json)
 
 ## Agregacja 4
